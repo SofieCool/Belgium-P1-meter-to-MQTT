@@ -97,23 +97,22 @@ void connectMQTT() {
 
 // Function to calculate the CRC16 code
 unsigned int calculateCRC16(unsigned int crc, unsigned char *buf, int len) {
-	for (int pos = 0; pos < len; pos++) {
-		crc ^= (unsigned int)buf[pos];
+  for (int pos = 0; pos < len; pos++) {
+    crc ^= (unsigned int)buf[pos];
 
-		for (int i = 8; i != 0; i--) {
-			if ((crc & 0x0001) != 0) {
-				crc >>= 1;
-				crc ^= 0xA001;
-			} else {
-				crc >>= 1;
+    for (int i = 8; i != 0; i--) {
+      if ((crc & 0x0001) != 0) {
+        crc >>= 1;
+        crc ^= 0xA001;
+      } else {
+        crc >>= 1;
       }
-		}
-	}
-
-	return crc;
+    }
+  }
+  return crc;
 }
 
-// Function to check the calculate the CRC for every line from the telegram
+// Function to calculate the CRC for every line from the telegram
 bool checkLine(int len) {
   char* startLine = strchr(telegramLine, '/');  // Check if the telegramLine is the first line of the telegram
   char* endLine = strchr(telegramLine, '!');    // Check if the telegramLine is the last line of the telegram
