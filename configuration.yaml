@@ -1,0 +1,167 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+
+mqtt:
+  binary_sensor:
+    - name: "Fluvius meter - Current rate"
+      state_topic: "meter/electricity/current_rate"
+      payload_off: "0002"
+      payload_on: "0001"
+      icon: >-
+        {% if is_state(entity_id,\"on"\) %}
+        mdi:shield-lock
+        {% else %}
+        mdi:shield-off
+        {% endif %}
+      
+  sensor:
+    - name: "Fluvius meter - ID"
+      state_topic: "meter/id"
+      
+    - name: "Fluvius meter - Consumption Day"
+      state_topic: "meter/electricity/consumption/day"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "kWh"
+      unique_id: "fluvius_meter_consumption_day"
+      
+    - name: "Fluvius meter - Consumption Night"
+      state_topic: "meter/electricity/consumption/night"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "kWh"
+      unique_id: "fluvius_meter_consumption_night"  
+
+    - name: "Fluvius meter - Production Day"
+      state_topic: "meter/electricity/production/day"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "kWh"
+      unique_id: "fluvius_meter_production_day"      
+      
+    - name: "Fluvius meter - Production Night"
+      state_topic: "meter/electricity/production/night"
+      device_class: "energy"
+      state_class: "total_increasing"
+      unit_of_measurement: "kWh"
+      unique_id: "fluvius_meter_production_night"        
+      
+    - name: "Fluvius meter - All phases consumption"
+      state_topic: "meter/electricity/consumption/all_phases"
+      device_class: "power"
+      unit_of_measurement: "kW"
+      unique_id: "fluvius_meter_all_phases_consumption"   
+           
+    - name: "Fluvius meter - All phases production"
+      state_topic: "meter/electricity/production/all_phases"
+      device_class: "power"
+      unit_of_measurement: "kW"
+      unique_id: "fluvius_meter_all_phases_production"
+      
+    - name: "Fluvius meter - Consumption L1 (Phase 1)"
+      state_topic: "meter/electricity/consumption/phase1"
+      device_class: "power"
+      unit_of_measurement: "kW"
+      unique_id: "fluvius_meter_consumption_L1"      
+      
+    - name: "Fluvius meter - Production L1 (Phase 1)"
+      state_topic: "meter/electricity/production/phase1"
+      device_class: "power"
+      unit_of_measurement: "kW"
+      unique_id: "fluvius_meter_production_L1"       
+     
+    - name: "Fluvius meter - Voltage L1 (Phase 1)"
+      state_topic: "meter/electricity/voltage/phase1"
+      device_class: "voltage"
+      unit_of_measurement: "V"
+      unique_id: "fluvius_meter_voltage_L1" 
+      
+    - name: "Fluvius meter - Voltage L2 (Phase 2)"
+      state_topic: "meter/electricity/voltage/phase2"
+      device_class: "voltage"
+      unit_of_measurement: "V"
+      unique_id: "fluvius_meter_voltage_L2"    
+      
+    - name: "Fluvius meter - Voltage L3 (Phase 3)"
+      state_topic: "meter/electricity/voltage/phase3"
+      device_class: "voltage"
+      unit_of_measurement: "V"
+      unique_id: "fluvius_meter_voltage_L3"    
+      
+    - name: "Fluvius meter - Current L1 (Phase 1)"
+      state_topic: "meter/electricity/current/phase1"
+      device_class: "current"
+      unit_of_measurement: "A"
+      unique_id: "fluvius_meter_current_L1"          
+      
+    - name: "Fluvius meter - Current L2 (Phase 2)"
+      state_topic: "meter/electricity/current/phase2"
+      device_class: "current"
+      unit_of_measurement: "A"
+      unique_id: "fluvius_meter_current_L2" 
+      
+    - name: "Fluvius meter - Current L3 (Phase 3)"
+      state_topic: "meter/electricity/current/phase3"
+      device_class: "current"
+      unit_of_measurement: "A"
+      unique_id: "fluvius_meter_current_L3" 
+      
+    - name: "Fluvius meter - Switch position electricity"
+      state_topic: "meter/electricity/switch_position"
+
+    - name: "Max. allowed power/phase"
+      state_topic: "meter/electricity/max_allowed_power_phase"
+      device_class: "power"
+      unit_of_measurement: "kW"
+      unique_id: "fluvius_meter_max_allowed_power_phase"     
+       
+    - name: "Max. allowed current/phase"
+      state_topic: "meter/electricity/max_allowed_current_phase"
+      device_class: "current"
+      unit_of_measurement: "A"
+      unique_id: "fluvius_meter_max_allowed_current_phase"       
+      
+    - name: "Fluvius meter - Message"
+      state_topic: "meter/message"      
+      
+    - name: "Fluvius meter - Other devices on bus"
+      state_topic: "meter/other_devices_on_bus"         
+      
+    - name: "Fluvius meter - Switch position natural gas"
+      state_topic: "meter/gas/switch_position" 
+      
+    - name: "Reading from natural gas meter"
+      state_topic: "meter/gas/reading"
+      device_class: "gas"
+      unit_of_measurement: "m²"
+      unique_id: "fluvius_meter_gas_reading"       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
